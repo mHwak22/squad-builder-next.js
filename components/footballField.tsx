@@ -20,7 +20,7 @@ const FootballField: React.FC<{ formation: Formation }> = ({ formation }) => {
       <Image
         src={field}
         alt="field"
-        width={900}
+        width={950}
         className="flex dark:bg-current"
       />
 

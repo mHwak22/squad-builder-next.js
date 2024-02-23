@@ -1,4 +1,4 @@
-export function OtherCursor({ x, y }) {
+export function Cursor({ x, y }) {
   return (
     <img
       style={{

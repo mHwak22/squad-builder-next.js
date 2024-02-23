@@ -1,0 +1,17 @@
+.default_card {
+  background-color: #ffffff;
+  opacity: 0.9;
+  background-image: repeating-radial-gradient(
+      circle at 0 0,
+      transparent 0,
+      #ffffff 6px
+    ),
+    repeating-linear-gradient(#02030555, #020305);
+  transition: transform 0.3s ease-in-out;
+}
+
+.default_card:hover {
+  z-index: 100%;
+  transform: scale(1.1);
+  cursor: pointer;
+}

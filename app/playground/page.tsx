@@ -1,40 +1,65 @@
 "use client";
 
-import { useOthers, useUpdateMyPresence } from "@/liveblocks.config";
-import React from "react";
-import { OtherCursor } from "./_component/otherCursor";
-import FootballField from "./_component/footballField";
-import { formation442 } from "./_positions/formations";
+import { createRoom, getCookie } from "@/actions/user-action";
+import { saveUser } from "@/redux/slices/user-slices";
+import { Button, Input } from "antd";
+import { useRouter } from "next/navigation";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import axios from "axios";
 
-function Playground() {
-  const others = useOthers();
-  const userCount = others.length;
-  const updateMyPresence = useUpdateMyPresence();
+const Home = () => {
+  const [loggedUser, setLoggedUser] = useState(null);
+  const dispatch = useDispatch();
+  const router = useRouter();
+
+  ///FETCHING COOKIE USING SERVER ACTION
+  useEffect(() => {
+    async function existingCookie() {
+      const response = await getCookie().then((data) => {
+        setLoggedUser((prevLoggedUser) => {
+          // console.log("save data", prevLoggedUser); // Access previous state
+          return data; // Return new state
+        });
+      });
+    }
+
+    async function getPlayers() {
+      try {
+        const response = await axios.get("/api/players");
+        console.log(response.data);
+      } catch (error) {
+        console.log("error", error);
+      }
+    }
+    existingCookie();
+    // getPlayers();
+  }, []);
+
+  //Creating room and playground dynamically
+  async function createRoomRef(formData: FormData) {
+    try {
+      // console.log(formData.get("rid"));
+      formData.append("uid", loggedUser?.id);
+      const repsonse = await createRoom(formData).then((data) => {
+        router.push(`/playground/${data?.roomID}`);
+      });
+      console.log(repsonse);
+    } catch (error) {}
+  }
 
   return (
-    <div
-      className="w-screen h-screen"
-      onPointerMove={(e) =>
-        updateMyPresence({ cursor: { x: e.clientX, y: e.clientY } })
-      }
-      onPointerLeave={() => updateMyPresence({ cursor: null })}
-    >
-      <h1>Total users: {userCount}</h1>
-
-      {others.map(({ connectionId, presence }) =>
-        presence.cursor ? (
-          <OtherCursor
-            key={connectionId}
-            x={presence.cursor.x}
-            y={presence.cursor.y}
-          />
-        ) : null
-      )}
-
-      {/* //////Field components///// */}
-      <FootballField formation={formation442} />
-    </div>
+    <form action={createRoomRef}>
+      <div className="flex justify-center items-center h-screen">
+        <div className="flex gap-3">
+          <Input placeholder="enter room number" name="rid" />
+          <Button type="primary" htmlType="submit">
+            Enter
+          </Button>
+        </div>
+      </div>
+    </form>
   );
-}
+};
 
-export default Playground;
+export default Home;
