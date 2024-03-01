@@ -39,12 +39,14 @@ const Home = () => {
   //Creating room and playground dynamically
   async function createRoomRef(formData: FormData) {
     try {
-      // console.log(formData.get("rid"));
-      formData.append("uid", loggedUser?.id);
+      console.log(formData.get("rid"));
+      formData.set("uid", loggedUser?.id);
+      console.log(formData);
+
       const repsonse = await createRoom(formData).then((data) => {
+        console.log(data);
         router.push(`/playground/${data?.roomID}`);
       });
-      console.log(repsonse);
     } catch (error) {}
   }
 

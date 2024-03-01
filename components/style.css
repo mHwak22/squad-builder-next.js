@@ -11,7 +11,12 @@
 }
 
 .default_card:hover {
-  z-index: 100%;
   transform: scale(1.1);
   cursor: pointer;
+  box-shadow: 0 0 10px gold;
+  backdrop-filter: none;
+}
+
+.glow_card {
+  transition: box-shadow 0.3s ease;
 }

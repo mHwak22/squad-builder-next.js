@@ -68,13 +68,13 @@ export async function createRoom(data: FormData) {
     // console.log("createRoom", data);
     let uid = data.get("uid");
     let rid = data.get("rid");
-    const existingUser = await prisma.user.findUnique({
-      where: { id: Number(uid) },
-    });
+    // const existingUser = await prisma.user.findUnique({
+    //   where: { id: Number(uid) },
+    // });
 
-    if (!existingUser) {
-      return null;
-    }
+    // if (!existingUser) {
+    //   return null;
+    // }
 
     const existingRoom = await prisma.room.findUnique({
       where: { roomID: rid?.toString() },

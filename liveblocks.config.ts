@@ -1,4 +1,4 @@
-import { createClient } from "@liveblocks/client";
+import { BaseUserMeta, LiveObject, createClient } from "@liveblocks/client";
 import { createRoomContext, createLiveblocksContext } from "@liveblocks/react";
 
 const client = createClient({
@@ -10,32 +10,37 @@ const client = createClient({
 // and that will automatically be kept in sync. Accessible through the
 // `user.presence` property. Must be JSON-serializable.
 type Presence = {
-  // cursor: { x: number, y: number } | null,
-  // ...
+  cursor: { x: number; y: number } | null;
+  formationSelectedId: string | null;
+  searchClickedId: string | null;
+  message: string | null;
 };
 
+type Theme = "light" | "dark";
+
+export type Logo = {
+  message: string[];
+  theme: Theme;
+};
 // Optionally, Storage represents the shared document that persists in the
 // Room, even after all users leave. Fields under Storage typically are
 // LiveList, LiveMap, LiveObject instances, for which updates are
 // automatically persisted and synced to all connected clients.
 type Storage = {
-  // author: LiveObject<{ firstName: string, lastName: string }>,
-  // ...
+  logo: LiveObject<Logo>;
 };
 
 // Optionally, UserMeta represents static/readonly metadata on each user, as
 // provided by your own custom auth back end (if used). Useful for data that
 // will not change during a session, like a user's name or avatar.
-type UserMeta = {
-  // id?: string,  // Accessible through `user.id`
-  // info?: Json,  // Accessible through `user.info`
-};
+type UserMeta = BaseUserMeta;
 
 // Optionally, the type of custom events broadcast and listened to in this
 // room. Use a union for multiple events. Must be JSON-serializable.
 type RoomEvent = {
-  // type: "NOTIFICATION",
-  // ...
+  // x: number | undefined;
+  // y: number | undefined;
+  value: string;
 };
 
 // Optionally, when using Comments, ThreadMetadata represents metadata on

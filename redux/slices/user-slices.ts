@@ -1,7 +1,7 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 
 //Type of data for user
-export interface UserState {
+export interface UserProps {
   id: number;
   username: string;
   email: string;
@@ -10,7 +10,7 @@ export interface UserState {
 }
 
 //The initial state
-const initialState: UserState = {
+const initialState: UserProps = {
   id: 0,
   username: "",
   email: "",

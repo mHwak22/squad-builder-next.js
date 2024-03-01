@@ -4,15 +4,14 @@ import React from "react";
 import { Room } from "../Room";
 import Live from "@/components/cursor/live";
 import FootballField from "@/components/footballField";
-import { formation442 } from "@/positions/formations";
+
+import TeamOptions from "@/components/formationSelect";
 
 const page = ({ params }: { params: { playgroundID: string } }) => {
   return (
     <Room roomId={params.playgroundID}>
-      <div>
-        <h1>My id : {params.playgroundID}</h1>
+      <div className="flex">
         <Live />
-        <FootballField formation={formation442} />
       </div>
     </Room>
   );
