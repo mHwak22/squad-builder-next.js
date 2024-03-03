@@ -24,16 +24,15 @@ const Home = () => {
       });
     }
 
-    async function getPlayers() {
-      try {
-        const response = await axios.get("/api/players");
-        console.log(response.data);
-      } catch (error) {
-        console.log("error", error);
-      }
-    }
+    // async function getPlayers() {
+    //   try {
+    //     const response = await axios.get("/api/players");
+    //     console.log(response.data);
+    //   } catch (error) {
+    //     console.log("error", error);
+    //   }
+    // }
     existingCookie();
-    // getPlayers();
   }, []);
 
   //Creating room and playground dynamically

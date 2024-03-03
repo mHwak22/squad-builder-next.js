@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import LiveCursor from "./liveCursor";
+import LiveModules from "./liveModules";
 import { useOthers } from "@/liveblocks.config";
 
 const Live = () => {
@@ -7,7 +7,7 @@ const Live = () => {
 
   return (
     <div className="absolute z-50">
-      <LiveCursor others={others} />
+      <LiveModules others={others} />
     </div>
   );
 };

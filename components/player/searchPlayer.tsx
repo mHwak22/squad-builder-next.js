@@ -1,17 +1,32 @@
 import { Input } from "antd";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { UserSearch } from "lucide-react";
 import SearchModal from "./searchModal";
-import { useOthers, useUpdateMyPresence } from "@/liveblocks.config";
-import { connectionIdToColor } from "@/lib/utils";
+
+import axios from "axios";
 
 const SearchPlayer = () => {
   const [modalOpen, setModalOpen] = useState(false);
+  const [playersData, setPlayersData] = useState<any>();
 
   function handleClick(event: any) {
     // console.log(event.target.id);
     setModalOpen(true);
   }
+
+  useEffect(() => {
+    async function getPlayers() {
+      try {
+        const response = await axios.get("/api/players");
+        // console.log(response.data);
+        setPlayersData(response.data);
+      } catch (error) {
+        console.log("error", error);
+      }
+    }
+
+    getPlayers();
+  }, []);
 
   return (
     <>
@@ -27,7 +42,11 @@ const SearchPlayer = () => {
         </p>
       </div>
 
-      <SearchModal modalOpen={modalOpen} setModalOpen={setModalOpen} />
+      <SearchModal
+        modalOpen={modalOpen}
+        setModalOpen={setModalOpen}
+        playersData={playersData}
+      />
     </>
   );
 };

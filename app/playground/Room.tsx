@@ -3,7 +3,7 @@
 import { ReactNode, useState } from "react";
 import { RoomProvider } from "@/liveblocks.config";
 import { ClientSideSuspense } from "@liveblocks/react";
-import { LiveObject } from "@liveblocks/client";
+import { LiveList, LiveObject } from "@liveblocks/client";
 
 export function Room({
   children,
@@ -18,8 +18,13 @@ export function Room({
       initialPresence={{
         cursor: null,
         formationSelectedId: null,
+        formationName: null,
         searchClickedId: null,
         message: "",
+      }}
+      initialStorage={{
+        players: new LiveList(),
+        // todos: new LiveList(),
       }}
     >
       <ClientSideSuspense fallback={<div>Loading…</div>}>

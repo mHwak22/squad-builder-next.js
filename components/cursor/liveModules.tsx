@@ -35,7 +35,7 @@ type Position = {
   y: number;
 };
 
-function LiveCursor({ others }: LiveCursorProps) {
+function LiveModules({ others }: LiveCursorProps) {
   const userCount = others.length;
   const updateMyPresence = useUpdateMyPresence();
   const { user } = useUser();
@@ -154,4 +154,4 @@ function LiveCursor({ others }: LiveCursorProps) {
   );
 }
 
-export default LiveCursor;
+export default LiveModules;

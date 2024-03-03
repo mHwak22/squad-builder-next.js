@@ -6,7 +6,7 @@ import axios, { AxiosResponse } from "axios";
 export async function GET(req: Request): Promise<Response> {
   try {
     const response: AxiosResponse<any, any> = await axios.get(
-      "https://drop-api.ea.com/rating/fc-24?limit=1"
+      "https://drop-api.ea.com/rating/fc-24?limit=100"
     );
 
     console.log(response.data.items);

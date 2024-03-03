@@ -1,6 +1,6 @@
 import React from "react";
 
-import { useUpdateMyPresence } from "@/liveblocks.config";
+import { useBroadcastEvent, useUpdateMyPresence } from "@/liveblocks.config";
 
 import { formations } from "@/positions/formations";
 import { saveFormation } from "@/redux/slices/room-slices";
@@ -16,6 +16,7 @@ import LiveSelect from "./liveSelect";
 const FormationSelect = () => {
   const dispatch = useDispatch();
   const updateMyPresence = useUpdateMyPresence();
+  const broadcast = useBroadcastEvent();
 
   const formationState = useSelector(
     (state: any) => state.formation.formationState
@@ -27,10 +28,16 @@ const FormationSelect = () => {
     </Select.Option>
   ));
 
-  function handleFormationChange(event: any) {
+  async function handleFormationChange(event: any) {
     // console.log(`selected ${event}`);
+    await updateMyPresence({ formationName: event });
+
+    broadcast({
+      formationNameValue: event,
+    });
+
     dispatch(saveFormation(event));
-    console.log(formationState);
+    console.log("formationState", formationState);
   }
 
   return (

@@ -1,5 +1,5 @@
 import { connectionIdToColor } from "@/lib/utils";
-import { useBroadcastEvent, useEventListener } from "@/liveblocks.config";
+import { useEventListener } from "@/liveblocks.config";
 
 import cursor from "@/public/cursor.svg";
 import { Input } from "antd";

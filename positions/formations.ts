@@ -44,3 +44,19 @@ export const formations: Formation[] = [
     ],
   },
 ];
+
+export const initFormation = {
+  players: [
+    { name: "Player 1", position: { x: 100, y: 30 }, role: "ST" },
+    { name: "Player 2", position: { x: 190, y: 65 }, role: "RW" },
+    { name: "Player 3", position: { x: 10, y: 65 }, role: "LW" },
+    { name: "Player 4", position: { x: -30, y: 170 }, role: "CM" },
+    { name: "Player 5", position: { x: 100, y: 170 }, role: "CM" },
+    { name: "Player 6", position: { x: 230, y: 170 }, role: "CM" },
+    { name: "Player 7", position: { x: -100, y: 270 }, role: "LB" },
+    { name: "Player 8", position: { x: 40, y: 270 }, role: "CB" },
+    { name: "Player 9", position: { x: 180, y: 270 }, role: "CB" },
+    { name: "Player 10", position: { x: 300, y: 270 }, role: "RB" },
+    { name: "Player 11", position: { x: 100, y: 390 }, role: "GK" },
+  ],
+};

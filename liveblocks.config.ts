@@ -1,4 +1,9 @@
-import { BaseUserMeta, LiveObject, createClient } from "@liveblocks/client";
+import {
+  BaseUserMeta,
+  LiveList,
+  LiveObject,
+  createClient,
+} from "@liveblocks/client";
 import { createRoomContext, createLiveblocksContext } from "@liveblocks/react";
 
 const client = createClient({
@@ -12,22 +17,26 @@ const client = createClient({
 type Presence = {
   cursor: { x: number; y: number } | null;
   formationSelectedId: string | null;
+  formationName: string | null;
   searchClickedId: string | null;
   message: string | null;
 };
 
-type Theme = "light" | "dark";
+// type Theme = "light" | "dark";
 
-export type Logo = {
-  message: string[];
-  theme: Theme;
-};
+// export type Logo = {
+//   message: string[];
+//   theme: Theme;
+// };
+
 // Optionally, Storage represents the shared document that persists in the
 // Room, even after all users leave. Fields under Storage typically are
 // LiveList, LiveMap, LiveObject instances, for which updates are
 // automatically persisted and synced to all connected clients.
 type Storage = {
-  logo: LiveObject<Logo>;
+  // logo: LiveObject<Logo>;
+  players: LiveList<LiveObject<any>>;
+  // todos: LiveList<LiveObject<Todo>>;
 };
 
 // Optionally, UserMeta represents static/readonly metadata on each user, as
@@ -40,7 +49,8 @@ type UserMeta = BaseUserMeta;
 type RoomEvent = {
   // x: number | undefined;
   // y: number | undefined;
-  value: string;
+  value?: string;
+  formationNameValue?: string;
 };
 
 // Optionally, when using Comments, ThreadMetadata represents metadata on
