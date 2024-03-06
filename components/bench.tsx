@@ -1,16 +1,42 @@
 import React, { useEffect, useState } from "react";
 import { Button, Drawer, Radio, Space } from "antd";
-import { ArrowBigUpDashIcon } from "lucide-react";
+import {
+  ArrowBigUpDashIcon,
+  Repeat2Icon,
+  Trash,
+  TrashIcon,
+} from "lucide-react";
 import PlayerCard from "./player/playerCard";
 import BenchCard from "./player/benchCard";
-import { useSelector } from "react-redux";
-import { useStorage } from "@/liveblocks.config";
+import { useDispatch, useSelector } from "react-redux";
+import { useMutation, useStorage } from "@/liveblocks.config";
+import { savePlayer } from "@/redux/slices/room-slices";
 
 const Bench: React.FC = () => {
   const [open, setOpen] = useState(false);
-  const playerid = useSelector((state: any) => state.player.playerState);
+  const SelectedPlayer = useSelector((state: any) => state.player.playerSelect);
   const players = useStorage((root) => root.players);
-  console.log(players);
+  const dispatch = useDispatch();
+  // const [updatedPlayers, setUpdatedPlayers] = useState(players);
+  // console.log(players);
+
+  const deleteTodo = useMutation(({ storage }, index) => {
+    try {
+      // console.log(
+      //   "index",
+      //   SelectedPlayer.playerIndex,
+      //   SelectedPlayer.playerState
+      // );
+      if (index === null) {
+        return;
+      }
+      storage.get("players").delete(index);
+      dispatch(savePlayer({ playerState: 0, playerIndex: null }));
+    } catch (error) {
+      console.log(error);
+    }
+  }, []);
+
   const showDrawer = () => {
     setOpen(true);
   };
@@ -18,11 +44,6 @@ const Bench: React.FC = () => {
   const onClose = () => {
     setOpen(false);
   };
-
-  // useEffect(() => {
-  //   const id = getCookie("playerId");
-  //   setPid(id);
-  // });
 
   return (
     <div>
@@ -39,7 +60,7 @@ const Bench: React.FC = () => {
           open bench
         </span>
       </div>
-      sdfdsf {playerid}
+
       <Drawer
         style={{
           backgroundImage: "linear-gradient(120deg, #84fab0 0%, #8fd3f4 100%)",
@@ -52,19 +73,21 @@ const Bench: React.FC = () => {
         open={open}
       >
         <div className="flex justify-start gap-3">
-          {players?.map((item) => {
+          {players?.map((item, index) => {
             return (
               <div key={item.id}>
-                <BenchCard
-                  firstName={item.firstName}
-                  commonName={item.commonName}
-                  lastName={item.lastName}
-                  avatarUrl={item.avatarUrl}
-                  position={item.position.shortLabel}
-                />
+                <BenchCard player={item} index={index} />
               </div>
             );
           })}
+        </div>
+        <div className="absolute top-0 flex items-center gap-3 ml-[12rem] mt-[1.1rem]">
+          <TrashIcon
+            className="cursor-pointer"
+            size={16}
+            color="red"
+            onClick={() => deleteTodo(SelectedPlayer.playerIndex)}
+          />
         </div>
       </Drawer>
     </div>

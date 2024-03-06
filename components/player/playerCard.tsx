@@ -35,7 +35,7 @@ const PlayerCard: React.FC<{ player: Player; uid: string }> = ({
         >
           {/* //Position/// */}
           <div className="absolute top-0 left-0 text-xs p-1 font-bold text-gray-800">
-            <p>{player.role}</p>
+            <p>{player?.role}</p>
           </div>
 
           <div className="rounded-full bg-blue-600 text-center">

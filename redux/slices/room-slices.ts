@@ -2,17 +2,29 @@ import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 
 export interface FormationProps {
   formationState: string;
-  playerState: string;
+  playerSelect: {
+    playerState: number;
+    playerIndex: any;
+    swappingState: boolean;
+  };
 }
 
 const formationInitialState: FormationProps = {
   formationState: "4-3-3-1",
-  playerState: "",
+  playerSelect: {
+    playerState: 0,
+    playerIndex: null,
+    swappingState: false,
+  },
 };
 
 const playerInitialState: FormationProps = {
   formationState: "4-3-3-1",
-  playerState: "",
+  playerSelect: {
+    playerState: 0,
+    playerIndex: null,
+    swappingState: false,
+  },
 };
 
 export const formationSlice = createSlice({
@@ -29,8 +41,10 @@ export const playerSlice = createSlice({
   name: "player",
   initialState: playerInitialState,
   reducers: {
-    savePlayer: (state, action: PayloadAction<string>) => {
-      state.playerState = action.payload;
+    savePlayer: (state, action: PayloadAction<any>) => {
+      state.playerSelect.playerState = action.payload.playerState;
+      state.playerSelect.playerIndex = action.payload.playerIndex;
+      state.playerSelect.swappingState = action.payload.swappingState;
     },
   },
 });
