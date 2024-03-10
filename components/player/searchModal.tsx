@@ -69,7 +69,7 @@ const SearchModal: React.FC<{
   /**
    * An array of options for the select list, containing player objects with `value` and `label` properties.
    */
-  const playerOptions = playersData?.map((player) => ({
+  const playerOptions = playersData?.map((player: any) => ({
     value: player.id.toString(),
     label: (
       <div className="flex items-center">

@@ -22,7 +22,7 @@ const FormationSelect = () => {
     (state: any) => state.formation.formationState
   );
 
-  const options = formations.map((formation, index) => (
+  const options = formations.map((formation: any, index: any) => (
     <Select.Option key={index} value={formation.name}>
       {formation.name}
     </Select.Option>

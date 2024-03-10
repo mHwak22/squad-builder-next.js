@@ -9,7 +9,7 @@ import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 
 const Home = () => {
-  const [loggedUser, setLoggedUser] = useState(null);
+  const [loggedUser, setLoggedUser] = useState<any>(null);
   const dispatch = useDispatch();
   const router = useRouter();
 
@@ -17,7 +17,7 @@ const Home = () => {
   useEffect(() => {
     async function existingCookie() {
       const response = await getCookie().then((data) => {
-        setLoggedUser((prevLoggedUser) => {
+        setLoggedUser((prevLoggedUser: any) => {
           // console.log("save data", prevLoggedUser); // Access previous state
           return data; // Return new state
         });
