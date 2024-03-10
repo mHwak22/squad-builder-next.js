@@ -216,7 +216,7 @@ const FootballField: React.FC<{ formation: Formation[] }> = ({ formation }) => {
               <PlayerCard
                 key={index}
                 player={player}
-                uid={user?.id}
+                uid={user?.id!}
                 index={index}
                 setSlelectedIndex={setSlelectedIndex}
               />

@@ -15,29 +15,6 @@ export default function LiveChatWindow({
   updateMyPresence,
   others,
 }: any) {
-  // const broadcast = useBroadcastEvent();
-
-  // async function handleSubmit(e: any) {
-  //   e.preventDefault();
-  //   // console.log();
-
-  //   await updateMyPresence({ message: e.target[0].value });
-
-  //   broadcast({
-  //     // x: cursor?.x,
-  //     // y: cursor?.y,
-  //     value: e.target[0].value,
-  //   });
-  // }
-
-  // useEventListener((eventData) => {
-  //   if (eventData.event) {
-  //     // Handle the "EMOJI" event
-  //     console.log("Received EMOJI event:", eventData);
-  //     // Update state or perform any necessary actions based on the event
-  //   }
-  // });
-
   return (
     <Card className="fixed bottom-0 left-0 w-[400px] h-[500px] max-w-lg flex flex-col">
       <CardHeader className="border-b">
@@ -67,7 +44,7 @@ export default function LiveChatWindow({
         <div className="grid gap-4 px-4">
           {others.map(({ connectionId, presence }: any) =>
             presence.message ? (
-              <div className="flex items-center space-x-4">
+              <div key={connectionId} className="flex items-center space-x-4">
                 {/* ///Sender name//// */}
                 <div className="flex flex-col space-y-1">
                   <p className="text-xs font-medium tracking-wide">Now</p>
@@ -81,28 +58,6 @@ export default function LiveChatWindow({
               </div>
             ) : null
           )}
-
-          {/* <div className="flex items-center space-x-4 justify-end">
-            <div className="rounded-lg bg-gray-100 dark:bg-gray-800 p-4">
-              <p>
-                Hi there! Thanks for reaching out. Let me check and I'll get
-                back to you with all the details.
-              </p>
-            </div>
-            <div className="flex flex-col space-y-1">
-              <p className="text-xs font-medium tracking-wide">Now</p>
-              <p className="text-sm font-bold">Jane</p>
-            </div>
-          </div> */}
-          {/* <div className="flex items-center space-x-4">
-            <div className="flex flex-col space-y-1">
-              <p className="text-xs font-medium tracking-wide">Now</p>
-              <p className="text-sm font-bold">You</p>
-            </div>
-            <div className="rounded-lg bg-gray-100 dark:bg-gray-800 p-4">
-              <p>Thanks! I appreciate it.</p>
-            </div>
-          </div> */}
         </div>
       </CardContent>
       <CardFooter>
@@ -122,7 +77,7 @@ export default function LiveChatWindow({
   );
 }
 
-function ChevronLeftIcon(props) {
+function ChevronLeftIcon(props: any) {
   return (
     <svg
       {...props}
@@ -141,7 +96,7 @@ function ChevronLeftIcon(props) {
   );
 }
 
-function MinusIcon(props) {
+function MinusIcon(props: any) {
   return (
     <svg
       {...props}
@@ -160,7 +115,7 @@ function MinusIcon(props) {
   );
 }
 
-function XIcon(props) {
+function XIcon(props: any) {
   return (
     <svg
       {...props}

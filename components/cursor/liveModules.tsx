@@ -138,16 +138,6 @@ function LiveModules({ others }: LiveCursorProps) {
         <aside className="absolute right-0 flex flex-col justify-center items-center mt-0 m-24 gap-8">
           <SearchPlayer />
           <FormationSelect />
-
-          {/* ///Chat window///// */}
-          {/* {keyState === "/" && (
-            <LiveChatWindow
-              message={message}
-              setMessage={setMessage}
-              updateMyPresence={updateMyPresence}
-              others={others}
-            />
-          )} */}
         </aside>
       </div>
     </div>
