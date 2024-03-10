@@ -12,8 +12,8 @@ export async function GET(req: Request): Promise<Response> {
     console.log(response.data.items);
 
     return new Response(JSON.stringify(response.data.items));
-  } catch (error) {
+  } catch (error: any) {
     console.error("Error fetching data:", error);
-    return new Response(error);
+    return new Response();
   }
 }
