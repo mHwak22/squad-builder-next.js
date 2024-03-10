@@ -55,7 +55,7 @@ export function Cursor({
       {presence.message !== "" &&
         others.map(({ connectionId, presence }: any) =>
           presence.cursor ? (
-            <div className="flex absolute z-50 mt-6">
+            <div key={connectionId} className="flex absolute z-50 mt-6">
               <p
                 className="rounded-lg text-xs p-2"
                 style={{

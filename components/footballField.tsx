@@ -205,6 +205,7 @@ const FootballField: React.FC<{ formation: Formation[] }> = ({ formation }) => {
 
       {formationState?.map((player, index) => (
         <Suspense
+          key={index}
           fallback={
             <Spin
               indicator={<LoadingOutlined style={{ fontSize: 24 }} spin />}
@@ -236,6 +237,7 @@ const FootballField: React.FC<{ formation: Formation[] }> = ({ formation }) => {
 
       {fieldPlayerList?.map((player, index) => (
         <Suspense
+          key={index}
           fallback={
             <Spin
               indicator={<LoadingOutlined style={{ fontSize: 24 }} spin />}
