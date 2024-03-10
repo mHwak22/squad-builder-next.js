@@ -20,6 +20,6 @@ export async function GET(req: NextRequest): Promise<Response> {
     return new Response(JSON.stringify(response.data.items));
   } catch (error: any) {
     console.error("Error fetching data:", error);
-    // return new Response(error);
+    return new Response();
   }
 }
