@@ -17,9 +17,15 @@ export async function POST(request: Request) {
   console.log("REQUEST", await request.json());
 
   // Identify the user and return the result
+  const userId = user?.id?.toString(); // Handling the case where user or user.id is undefined
+
+  if (!userId) {
+    return new Response("User ID not found", { status: 400 });
+  }
 
   const { status, body } = await liveblocks.identifyUser({
-    userId: user?.id.toString(),
+    userId,
+    groupIds: [], // Provide an empty array if you don't have group IDs for your user
   });
   return new Response(body, { status });
 }
