@@ -37,7 +37,7 @@ const SearchModal: React.FC<{
   const handleConfirm = () => {
     // setCookie("playerId", selectedPlayer);
     setModalOpen(false);
-    dispatch(savePlayer(selectedPlayer));
+    // dispatch(savePlayer(selectedPlayer));
     console.log("Player ID updated:", playerid);
     getSelectedPlayerData(selectedPlayer);
   };

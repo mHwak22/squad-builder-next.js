@@ -1,6 +1,5 @@
 import Image from "next/image";
 import "../style.css";
-import { useUpdateMyPresence } from "@/liveblocks.config";
 import Draggable from "react-draggable";
 
 interface Player {
@@ -9,10 +8,12 @@ interface Player {
   role: string;
 }
 
-const PlayerCard: React.FC<{ player: Player; uid: string }> = ({
-  player,
-  uid,
-}) => {
+const PlayerCard: React.FC<{
+  player: Player;
+  uid: string;
+  index: any;
+  setSlelectedIndex: any;
+}> = ({ player, uid, index, setSlelectedIndex }) => {
   // const updateMyPresence = useUpdateMyPresence();
 
   return (
@@ -25,13 +26,15 @@ const PlayerCard: React.FC<{ player: Player; uid: string }> = ({
           top: player?.position.y,
           marginLeft: "21rem",
           marginTop: "0.5rem",
+          display: "flex",
         }}
       >
+        {/* {index} */}
         {/* <p>{player.name}</p> */}
         {/* ///Render cards dynamically//// */}
         <div
-          className="default_card glow_card w-[78px] h-[93px] flex flex-col justify-center items-center rounded-md"
-          onClick={() => console.log("clicked")}
+          className="default_card glow_card w-[84px] h-[100px] flex flex-col justify-center items-center rounded-md"
+          onClick={() => setSlelectedIndex(index)}
         >
           {/* //Position/// */}
           <div className="absolute top-0 left-0 text-xs p-1 font-bold text-gray-800">
@@ -43,6 +46,7 @@ const PlayerCard: React.FC<{ player: Player; uid: string }> = ({
           </div>
         </div>
         {/* Additional player card info */}
+        {/* <Repeat2 size={16} color="blue" /> */}
       </div>
     </Draggable>
   );

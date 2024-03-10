@@ -46,9 +46,12 @@ const BenchCard = ({ player, index }: any) => {
       {!flipped && (
         <div
           className="default_card glow_card w-[84px] h-[100px] flex flex-col justify-center items-center rounded-md"
-          onClick={() =>
-            dispatch(savePlayer({ playerState: player.id, playerIndex: index }))
-          }
+          onClick={() => {
+            console.log("selectIndex");
+            dispatch(
+              savePlayer({ playerState: player.id, playerIndex: index })
+            );
+          }}
         >
           {/* //Position/// */}
           <div className="absolute top-0 left-0 text-[9px] p-1 font-bold text-gray-800">

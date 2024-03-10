@@ -34,9 +34,9 @@ type Presence = {
 // LiveList, LiveMap, LiveObject instances, for which updates are
 // automatically persisted and synced to all connected clients.
 type Storage = {
-  // logo: LiveObject<Logo>;
   players: LiveList<LiveObject<any>>;
-  // todos: LiveList<LiveObject<Todo>>;
+  fieldPlayers: LiveList<LiveObject<any>>;
+  formationIndexes: LiveList<any>;
 };
 
 // Optionally, UserMeta represents static/readonly metadata on each user, as

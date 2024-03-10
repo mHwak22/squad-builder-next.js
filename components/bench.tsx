@@ -22,11 +22,6 @@ const Bench: React.FC = () => {
 
   const deleteTodo = useMutation(({ storage }, index) => {
     try {
-      // console.log(
-      //   "index",
-      //   SelectedPlayer.playerIndex,
-      //   SelectedPlayer.playerState
-      // );
       if (index === null) {
         return;
       }
