@@ -36,10 +36,12 @@ export async function createUser(emailAddress: string, firstName: string) {
     });
     console.log("New user created:", newUser);
 
+    if(newUser){
     cookies().set("user", JSON.stringify(newUser), { secure: true });
     // console.log("Cookie set for new user:", cookies().get("user"));
 
     return newUser;
+    }
   } catch (error) {
     console.error("Error occurred:", error);
   }
