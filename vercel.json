@@ -1,9 +1,0 @@
-{
-    "functions": {
-      "api/**/*.ts": {
-        "runtime": "nodejs14.x",
-        "includeFiles": "prisma/**"
-      }
-    },
-    "version": 2
-  }
