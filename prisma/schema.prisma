@@ -30,15 +30,3 @@ model Room {
   roomName       String?
 }
 
-// Clerk and Liveblocks environment variables
-// Add more as needed
-// Note: These are placeholders, replace them with the correct values from your .env file
-generator clerk {
-  provider = "clerk"
-  key      = env("CLERK_SECRET_KEY")
-}
-
-generator liveblocks {
-  provider = "liveblocks"
-  key      = env("LIVEBLOCKS_SECRET_KEY")
-}
