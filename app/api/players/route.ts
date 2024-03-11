@@ -9,7 +9,7 @@ export async function GET(req: Request): Promise<Response> {
       "https://drop-api.ea.com/rating/fc-24?limit=100"
     );
 
-    console.log(response.data.items);
+    // console.log(response.data.items);
 
     return new Response(JSON.stringify(response.data.items));
   } catch (error: any) {

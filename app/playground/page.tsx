@@ -18,7 +18,7 @@ const Home = () => {
     async function existingCookie() {
       const response = await getCookie().then((data) => {
         setLoggedUser((prevLoggedUser: any) => {
-          // console.log("save data", prevLoggedUser); // Access previous state
+          console.log("save data", prevLoggedUser); // Access previous state
           return data; // Return new state
         });
       });

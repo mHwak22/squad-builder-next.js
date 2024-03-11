@@ -21,8 +21,7 @@ export default function Home() {
         const { emailAddress, firstName } = user?.externalAccounts[0];
         const response = await createUser(emailAddress, firstName).then(
           (data) => {
-            const action = { type: "user/saveUser", payload: data };
-            dispatch(action);
+            dispatch(saveUser(data));
             console.log("Redux state", data);
           }
         );
