@@ -8,25 +8,37 @@ generator client {
   provider = "prisma-client-js"
 }
 
+// Update the datasource block with the correct environment variable
 datasource db {
   provider = "postgresql"
-   url      = env("POSTGRES_URL")
- 
+  url      = env("POSTGRES_URL")
 }
 
 // User table
 model User {
   id             Int       @id @default(autoincrement())
   username       String?
-  email          String?   @unique
-  profileImage   String?    @map("profile_image")
-  players        String[]  
+  email          String    @unique
+  profileImage   String?   @map("profile_image")
+  players        String[]
 }
 
-//Room table
+// Room table
 model Room {
   id             Int       @id @default(autoincrement())
-  roomID         String?   @unique
+  roomID         String    @unique
   roomName       String?
 }
 
+// Clerk and Liveblocks environment variables
+// Add more as needed
+// Note: These are placeholders, replace them with the correct values from your .env file
+generator clerk {
+  provider = "clerk"
+  key      = env("CLERK_SECRET_KEY")
+}
+
+generator liveblocks {
+  provider = "liveblocks"
+  key      = env("LIVEBLOCKS_SECRET_KEY")
+}
